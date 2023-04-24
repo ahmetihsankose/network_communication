@@ -1,0 +1,6 @@
+[submodule "vendor/asio"]
+	path = vendor/asio
+	url = git@github.com:chriskohlhoff/asio.git
+[submodule "vendor/json"]
+	path = vendor/json
+	url = git@github.com:nlohmann/json.git

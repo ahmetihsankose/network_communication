@@ -1,0 +1,6 @@
+{
+    "server_port": 8080,
+    "server_ip": "127.0.0.1",
+    "client_port": 8080,
+    "client_ip": "127.0.0.1"
+}
