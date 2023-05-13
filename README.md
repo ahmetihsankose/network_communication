@@ -16,9 +16,8 @@ This library provides a simple and easy-to-use interface for TCP networking usin
 
 ## Installation
 
-1. Clone the repository: `git clone https://github.com/your_username/asio_network_library.git`
-2. Add the library's root directory to your project's include paths.
-3. Link against the required libraries: Asio and nlohmann/json.
+1. Clone the repository: `git clone git@github.com:ahmetihsankose/network_communication.git`
+2. git submodule update --init --recursive
 
 ## Usage
 
