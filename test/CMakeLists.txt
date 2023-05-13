@@ -11,6 +11,7 @@ add_executable(client client.cpp)
 target_include_directories(client
     PRIVATE
         ${CMAKE_SOURCE_DIR}/network_communication
+        ${CMAKE_SOURCE_DIR}/vendor/asio/asio/include
 )
 
 target_link_libraries(client
@@ -26,6 +27,7 @@ add_executable(server server.cpp)
 target_include_directories(server
     PRIVATE
         ${CMAKE_SOURCE_DIR}/network_communication
+        ${CMAKE_SOURCE_DIR}/vendor/asio/asio/include
 )
 
 target_link_libraries(server
