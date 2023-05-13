@@ -17,7 +17,7 @@ This library provides a simple and easy-to-use interface for TCP networking usin
 ## Installation
 
 1. Clone the repository: `git clone git@github.com:ahmetihsankose/network_communication.git`
-2. git submodule update --init --recursive
+2. `git submodule update --init --recursive`
 
 ## Usage
 
