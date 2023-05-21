@@ -20,7 +20,6 @@ public:
     CommunicationManager() : CommunicationManager(""){}; // Delegating constructor
 
     void registerHandler(const std::string &message_type, CallbackFunction callback);
-    void registerHandler(const std::string &message_type, std::function<std::string()> callback);
 
     std::string processMessage(std::string_view message);
 

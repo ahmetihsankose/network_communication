@@ -33,14 +33,6 @@ void CommunicationManager::registerHandler(const std::string &message_type, Call
     mCallbacks[message_type] = callback;
 }
 
-void CommunicationManager::registerHandler(const std::string &message_type, std::function<std::string()> callback)
-{
-    mCallbacks[message_type] = [callback](const nlohmann::json &)
-    {
-        return callback();
-    };
-}
-
 std::string CommunicationManager::processMessage(std::string_view message)
 {
     try
