@@ -23,6 +23,7 @@ void CommunicationManager::loadConfiguration(const std::string &config_file_path
     }
     else
     {
+        LOG_ERROR("Could not open the configuration file.");
         throw std::runtime_error("Could not open the configuration file.");
     }
 }
@@ -30,6 +31,14 @@ void CommunicationManager::loadConfiguration(const std::string &config_file_path
 void CommunicationManager::registerHandler(const std::string &message_type, CallbackFunction callback)
 {
     mCallbacks[message_type] = callback;
+}
+
+void CommunicationManager::registerHandler(const std::string &message_type, std::function<std::string()> callback)
+{
+    mCallbacks[message_type] = [callback](const nlohmann::json &)
+    {
+        return callback();
+    };
 }
 
 std::string CommunicationManager::processMessage(std::string_view message)

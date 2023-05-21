@@ -6,6 +6,7 @@
 #pragma once
 #include "TcpConnection.h"
 #include "CommunicationManager.h"
+#include "../utilities/Logger.h"
 
 class TcpServer
 {
@@ -17,14 +18,14 @@ public:
     }
     
 private:
-    void do_accept()
+    void do_accept() // wait for new client connection
     {
         mAcceptor.async_accept(
             [this](const asio::error_code &error, asio::ip::tcp::socket socket)
             {
                 if (!error)
                 {
-                    std::cout << "New connection from " << socket.remote_endpoint().address().to_string() << std::endl;
+                    LOG_INFO("New connection from %s", socket.remote_endpoint().address().to_string().c_str());
                     std::make_shared<TcpConnection>(std::move(socket), mCommunicationManager)->start();
                 }
 

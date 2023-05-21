@@ -3,12 +3,14 @@
     Contact koseahmetihsan@gmail.com
 */
 
+#pragma once
 #include <asio.hpp>
 #include <iostream>
 #include <chrono>
 #include <deque>
 #include <string_view>
 #include "CommunicationManager.h"
+#include "../utilities/Logger.h"
 
 class TcpClient
 {
@@ -30,7 +32,7 @@ public:
         }
         else
         {
-            std::cerr << "Not connected" << std::endl;
+            LOG_ERROR("Not connected");
         }
     }
 
@@ -75,7 +77,7 @@ private:
                                     }
                                     else
                                     {
-                                        std::cerr << "Connection error: " << error.message() << std::endl;
+                                        LOG_ERROR("Connection error: %s", error.message().c_str());
                                         mSocket.close();
                                         std::this_thread::sleep_for(std::chrono::seconds(5));
                                         do_connect();
@@ -96,7 +98,7 @@ private:
                                     }
                                     else
                                     {
-                                        std::cerr << "Read error: " << error.message() << std::endl;
+                                        LOG_ERROR("Read error: %s", error.message().c_str());
                                         mSocket.close();
                                         std::this_thread::sleep_for(std::chrono::seconds(5));
                                         do_connect();

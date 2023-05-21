@@ -16,13 +16,13 @@ int main(int argc, char **argv)
     std::thread io_thread([&io_context]()
                           { io_context.run(); });
 
-    nlohmann::json json_message;
-    json_message["message_type"] = "COMMAND";
-    json_message["module"] = "motion";
-    json_message["action"] = "start";
-    json_message["data"]["velocity"] = 10;
+    // nlohmann::json json_message;
+    // json_message["message_type"] = "COMMAND";
+    // json_message["module"] = "motion";
+    // json_message["action"] = "start";
+    // json_message["data"]["velocity"] = 10;
 
-    client.write(json_message.dump());
+    // client.write(json_message.dump());
 
     while (true)
     {

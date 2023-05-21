@@ -4,3 +4,6 @@
 [submodule "vendor/json"]
 	path = vendor/json
 	url = git@github.com:nlohmann/json.git
+[submodule "utilities"]
+	path = utilities
+	url = git@github.com:ahmetihsankose/utilities.git

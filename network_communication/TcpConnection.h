@@ -10,6 +10,7 @@
 #include <iostream>
 #include "CommunicationManager.h"
 #include <queue>
+#include "../utilities/Logger.h"
 
 class TcpConnection : public std::enable_shared_from_this<TcpConnection>
 {
@@ -45,18 +46,18 @@ private:
             std::string_view message_view(mData.data(), bytes_transferred);
             std::string response = mCommunicationManager.processMessage(message_view);
             // ...
-
+            
             mResponseQueue.push(response);
             do_write();
             do_read();
         }
         else if (error != asio::error::operation_aborted)
         {
-            std::cout << "Error: " << error.message() << std::endl;
+            LOG_ERROR("Error: %s", error.message().c_str());
         }
         else if (error == asio::error::eof)
         {
-            std::cout << "Client disconnected" << std::endl;
+            LOG_WARNING("Client disconnected");
             mSocket.close();
             mResponseQueue = std::queue<std::string>(); // Clear the queue
         }
@@ -72,7 +73,7 @@ private:
                 if (!error)
                 {
                     std::string message(mData.data(), length);
-                    std::cout << "Received message: " << message << std::endl;
+                    LOG_INFO("Received message: %s", message.c_str());
                     handleRead(error, length);
                     do_read();
                 }
@@ -80,8 +81,8 @@ private:
                          error == asio::error::eof ||
                          error == asio::error::timed_out)
                 {
-                    // Bağlantıyı kapatın ve hatayı yazdırın.
-                    std::cerr << "Connection error: " << error.message() << std::endl;
+                    // Close connection
+                    LOG_ERROR("Connection error: %s", error.message().c_str());
                     mSocket.close();
                 }
             });
@@ -107,7 +108,7 @@ private:
                     }
                     else
                     {
-                        std::cerr << "Connection error: " << error.message() << std::endl;
+                        LOG_ERROR("Connection error: %s", error.message().c_str());
                         mSocket.close();
                     }
                 });

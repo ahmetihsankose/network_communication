@@ -9,28 +9,34 @@ int main(int argc, char **argv)
     
     asio::io_context io_context;
 
-    // Register handlers
-    communicationManager.registerHandler("COMMAND", [](const nlohmann::json &json_message)
-                                         {
-        std::string module = json_message["module"];
-        std::string action = json_message["action"];
-        nlohmann::json data = json_message["data"];
+    // // Register handlers
+    // communicationManager.registerHandler("COMMAND", [](const nlohmann::json &json_message)
+    //                                      {
+    //     std::string module = json_message["module"];
+    //     std::string action = json_message["action"];
+    //     nlohmann::json data = json_message["data"];
 
-        if (module == "motion" && action == "start")
-        {
-            int velocity = data["velocity"];
-            std::cout << "Velocity: " << velocity << std::endl;
-            return "Motion started";
-        }
-        else if (module == "motion" && action == "stop")
-        {
-        std::cout << "Motion stop command received" << std::endl;
-        return "Motion stopped";
-        }
-        else
-        {
-        return "Invalid command";
-        } });
+    //     if (module == "motion" && action == "start")
+    //     {
+    //         int velocity = data["velocity"];
+    //         std::cout << "Velocity: " << velocity << std::endl;
+    //         return "Motion started";
+    //     }
+    //     else if (module == "motion" && action == "stop")
+    //     {
+    //     std::cout << "Motion stop command received" << std::endl;
+    //     return "Motion stopped";
+    //     }
+    //     else
+    //     {
+    //     return "Invalid command";
+    //     } });
+
+    communicationManager.registerHandler("COMMAND", [](const std::string &message)
+                                         {
+        std::cout << "Received message: " << message << std::endl;
+        return "Received message: " + message;
+    });
 
     // Create TcpServer instance and use communication manager
     unsigned short port = 8081;

@@ -9,6 +9,7 @@
 #include <functional>
 #include <unordered_map>
 #include <nlohmann/json.hpp>
+#include "../utilities/Logger.h"
 
 class CommunicationManager
 {
@@ -16,9 +17,10 @@ public:
     using CallbackFunction = std::function<std::string(const nlohmann::json &)>;
 
     CommunicationManager(const std::string &config_file_path);
-    CommunicationManager() : CommunicationManager("") {}; // Delegating constructor
-    
+    CommunicationManager() : CommunicationManager(""){}; // Delegating constructor
+
     void registerHandler(const std::string &message_type, CallbackFunction callback);
+    void registerHandler(const std::string &message_type, std::function<std::string()> callback);
 
     std::string processMessage(std::string_view message);
 
