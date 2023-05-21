@@ -9,7 +9,7 @@
 #include <functional>
 #include <unordered_map>
 #include <nlohmann/json.hpp>
-#include "../utilities/Logger.h"
+#include "../../utilities/Logger.h"
 
 class CommunicationManager
 {

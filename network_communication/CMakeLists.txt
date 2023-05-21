@@ -14,7 +14,7 @@ add_library(${PROJECT_NAME} STATIC ${SOURCE_FILES})
 
 target_include_directories(${PROJECT_NAME}
     PUBLIC
-        ${CMAKE_SOURCE_DIR}/network_communication
+        ${CMAKE_SOURCE_DIR}/network_communication/network_communication
         ${CMAKE_SOURCE_DIR}/vendor/asio/asio/include
         ${CMAKE_SOURCE_DIR}/vendor/json/include
 )
