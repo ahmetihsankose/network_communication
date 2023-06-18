@@ -12,6 +12,7 @@ target_include_directories(client
     PRIVATE
         ${CMAKE_SOURCE_DIR}/network_communication
         ${CMAKE_SOURCE_DIR}/vendor/asio/asio/include
+        ${CMAKE_SOURCE_DIR}/utilities
 )
 
 target_link_libraries(client
@@ -28,6 +29,7 @@ target_include_directories(server
     PRIVATE
         ${CMAKE_SOURCE_DIR}/network_communication
         ${CMAKE_SOURCE_DIR}/vendor/asio/asio/include
+        ${CMAKE_SOURCE_DIR}/utilities
 )
 
 target_link_libraries(server

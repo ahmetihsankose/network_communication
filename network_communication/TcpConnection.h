@@ -25,7 +25,7 @@ public:
 
     static Ptr create(asio::ip::tcp::socket socket, CommunicationManager &communicationManager)
     {
-        return Ptr(new TcpConnection(std::move(socket), communicationManager));
+        return std::make_shared<TcpConnection>(std::move(socket), communicationManager);
     }
 
     Socket &socket()
@@ -46,7 +46,7 @@ private:
             std::string_view message_view(mData.data(), bytes_transferred);
             std::string response = mCommunicationManager.processMessage(message_view);
             // ...
-            
+
             mResponseQueue.push(response);
             do_write();
             do_read();
